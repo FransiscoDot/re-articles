@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import Drawer from "./src/commons/Drawer";
+import Header from "./src/commons/Header";
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,9 @@ const styles = StyleSheet.create({
 
 export default StackNavigator({
   App: {
-    screen: Drawer
-  }
+    screen: Drawer,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft : <Header onPress={() => navigation.navigate("DrawerToggle")}/>
+    }),
+  },
 })

@@ -2,13 +2,15 @@ import React, {Component} from "react";
 import { TabNavigator } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import NewsScreen from "./NewsScreen";
-import CommunityScreen from "./CommunityScreen";
-import WriteScreen from "./WriteScreen";
+import NewsScreen from "../tabContainer/NewsScreen";
+import CommunityScreen from "../tabContainer/CommunityScreen";
+import WriteScreen from "../tabContainer/WriteScreen";
 
-export default Tab = TabNavigator(
+export default HomeScreen = TabNavigator(
   {
-    News: { screen: NewsScreen },
+    News: {
+      screen: NewsScreen
+    },
     Community: { screen: CommunityScreen },
     Write: { screen: WriteScreen }
   },

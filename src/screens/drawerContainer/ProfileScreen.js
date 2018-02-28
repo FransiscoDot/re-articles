@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text} from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 
 class ProfileScreen extends Component {
   render() {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
+  }
 });
 
 export default ProfileScreen;
