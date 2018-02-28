@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import { TabNavigator } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -6,7 +6,9 @@ import NewsScreen from "../tabContainer/NewsScreen";
 import CommunityScreen from "../tabContainer/CommunityScreen";
 import WriteScreen from "../tabContainer/WriteScreen";
 
-export default HomeScreen = TabNavigator(
+/* eslint-disable */
+
+const HomeScreen = TabNavigator(
   {
     News: {
       screen: NewsScreen
@@ -45,3 +47,5 @@ export default HomeScreen = TabNavigator(
     swipeEnabled: true
   }
 );
+
+export default HomeScreen;
