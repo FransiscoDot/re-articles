@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, View } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Header = ({onPress}) => {
   return (
-    <Ionicons name="ios-menu" size={25} style={styles.header} onPress={onPress}/>
+    <View>
+      <Ionicons name="ios-menu" size={25} style={styles.iconMenu} onPress={onPress}/>
+    </View>
   );
 };
 
@@ -14,8 +16,9 @@ Header.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    marginLeft: 10
+  iconMenu: {
+    marginLeft: 10,
+    marginRight: 10
   }
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { TabNavigator } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import NewsScreen from "../tabContainer/NewsScreen";
+import NewsScreen from "../tabContainer/newsContainer/NewsScreen";
 import CommunityScreen from "../tabContainer/CommunityScreen";
 import WriteScreen from "../tabContainer/WriteScreen";
 
@@ -10,9 +10,7 @@ import WriteScreen from "../tabContainer/WriteScreen";
 
 const HomeScreen = TabNavigator(
   {
-    News: {
-      screen: NewsScreen
-    },
+    News: { screen: NewsScreen },
     Community: { screen: CommunityScreen },
     Write: { screen: WriteScreen }
   },
@@ -43,8 +41,7 @@ const HomeScreen = TabNavigator(
       style: {
         backgroundColor: '#161614',
       },
-    },
-    swipeEnabled: true
+    }
   }
 );
 
