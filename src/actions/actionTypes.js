@@ -1,0 +1,1 @@
+export const LOAD_BREAKING_NEWS = "LOAD_BREAKING_NEWS";

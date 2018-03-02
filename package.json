@@ -7,13 +7,18 @@
     "lint:watch": "npm run lint -- --watch"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^25.0.0",
     "native-base": "^2.3.9",
     "prop-types": "^15.6.1",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.2.1"
+    "react-navigation": "^1.2.1",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

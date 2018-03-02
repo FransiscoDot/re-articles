@@ -35,6 +35,7 @@ const HomeScreen = TabNavigator(
     tabBarOptions: {
       activeTintColor: '#ff3287',
       inactiveTintColor: 'white',
+      tabBarPosition: "bottom",
       labelStyle: {
         fontSize: 12
       },
