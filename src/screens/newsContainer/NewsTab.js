@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import * as newsApi from "../../../actions/newsAction";
+import * as newsApi from "../../actions/newsAction";
 import { connect } from 'react-redux';
 
 import NewsFeed from "./NewsFeed";
@@ -19,7 +19,7 @@ class NewsTab extends Component {
 
   render() {
     return (
-      <NewsFeed genre={this.props.genre}/>
+      <NewsFeed genre={this.props.genre} screenProps={this.props.genre}/>
     );
   }
 }

@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyleSheet } from "react-native";
 import { Container, List } from "native-base";
-import * as newsActions from "../../../actions/newsAction";
-import { articlesFilteredAndFormatted } from "../../../selectors/selectors";
+import * as newsActions from "../../actions/newsAction";
+import { articlesFilteredAndFormatted } from "../../selectors/selectors";
 
 import ArticlePreview from "./ArticlePreview";
 
@@ -20,7 +20,7 @@ class NewsFeed extends Component {
          <List dataArray={this.props.articles}
             renderRow={(item) =>
               (
-               item.urlToImage != undefined && <ArticlePreview {...item} />
+               item.urlToImage != undefined && <ArticlePreview {...item}/>
               )
             }
           />
@@ -41,11 +41,11 @@ NewsFeed.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const articles = articlesFilteredAndFormatted(state.news, ownProps.genre);
+  const articles = articlesFilteredAndFormatted(state.news, ownProps.screenProps);
 
   return {
     articles: articles,
-    genre: ownProps.genre
+    genre: ownProps.screenProps
   };
 }
 
@@ -56,3 +56,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsFeed);
+

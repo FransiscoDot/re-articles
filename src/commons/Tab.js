@@ -2,13 +2,13 @@ import React from "react";
 import { TabNavigator } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import NewsScreen from "../tabContainer/newsContainer/NewsScreen";
-import CommunityScreen from "../tabContainer/CommunityScreen";
-import WriteScreen from "../tabContainer/WriteScreen";
+import NewsScreen from "../screens/newsContainer/NewsScreen";
+import CommunityScreen from "../screens/communityContainer/CommunityScreen";
+import WriteScreen from "../screens/writeContainer/WriteScreen";
 
 /* eslint-disable */
 
-const HomeScreen = TabNavigator(
+export default TabNavigator(
   {
     News: { screen: NewsScreen },
     Community: { screen: CommunityScreen },
@@ -45,5 +45,3 @@ const HomeScreen = TabNavigator(
     }
   }
 );
-
-export default HomeScreen;

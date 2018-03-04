@@ -1,10 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { StackNavigator } from "react-navigation";
-import * as newsApi from "./src/actions/newsAction";
 import configureStore from "./src/store/configureStore";
 
-import Drawer from "./src/commons/Drawer";
+import Tab from "./src/commons/Tab";
 import Header from "./src/commons/Header";
 
 const store = configureStore();
@@ -13,17 +12,10 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Drawer />
+        <Tab />
       </Provider>
     );
   }
 }
 
-export default StackNavigator({
-  App: {
-    screen: App
-    // navigationOptions: ({ navigation }) => ({
-    //   headerLeft : <Header onPress={() => navigation.navigate("DrawerToggle")}/>
-    // }),
-  },
-})
+export default App;

@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, ImageBackground, Text, View, TouchableHighlight   } from 'react-native';
 
-const ArticlePreview = article => {
+const ArticlePreview = (article) => {
   return (
-    <TouchableHighlight >
+    <TouchableHighlight>
       <ImageBackground source={{uri: article.urlToImage}} style={styles.container} om>
         <View style={styles.textContainer}>
           { article.source.name != null &&
