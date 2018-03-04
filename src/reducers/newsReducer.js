@@ -6,8 +6,15 @@ export default function news(state = initialState.news, action) {
     case types.LOAD_BREAKING_NEWS:
       return [
         ...state,
-        Object.assign([], action.news)
+        Object.assign({}, action.news)
       ];
+
+    case types.LOAD_EVERYTHING_NEWS:
+      return [
+        ...state,
+        Object.assign({}, action.news)
+      ];
+
     default:
       return state;
   }

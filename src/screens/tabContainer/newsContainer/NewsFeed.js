@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyleSheet } from "react-native";
-import { Container, Text, List, ListItem } from "native-base";
+import { Container, List } from "native-base";
+import * as newsActions from "../../../actions/newsAction";
+import { articlesFilteredAndFormatted } from "../../../selectors/selectors";
 
-import News from "./News";
+import ArticlePreview from "./ArticlePreview";
 
 class NewsFeed extends Component {
   constructor(props) {
@@ -15,12 +17,10 @@ class NewsFeed extends Component {
   render() {
     return (
       <Container style={styles.container}>
-         <List dataArray={this.props.news}
+         <List dataArray={this.props.articles}
             renderRow={(item) =>
               (
-                <ListItem>
-                  <Text>{item.title}</Text>
-                </ListItem>
+               item.urlToImage != undefined && <ArticlePreview {...item} />
               )
             }
           />
@@ -31,27 +31,27 @@ class NewsFeed extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    flex: 1
   },
 });
 
 NewsFeed.propTypes = {
-  news: PropTypes.array.isRequired,
+  articles: PropTypes.array.isRequired,
   genre: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+  const articles = articlesFilteredAndFormatted(state.news, ownProps.genre);
+
   return {
-    news: (state.news.length > 0) ? state.news[0] : state.news
+    articles: articles,
+    genre: ownProps.genre
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(dispatch)
+    actions: bindActionCreators(newsActions, dispatch)
   };
 }
 

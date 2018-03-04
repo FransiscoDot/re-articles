@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import { Container, Tab, Tabs, ScrollableTab } from "native-base";
+import { Container, Tabs, Tab, ScrollableTab } from "native-base";
 
-import NewsFeed from "./NewsFeed";
+import NewsTab from "./NewsTab";
 
 const genres = [
   { title: "culture", key: 0},
@@ -20,8 +20,8 @@ class NewsScreen extends Component {
         <Tabs renderTabBar={()=> <ScrollableTab />}>
           { genres.map(genre =>
               (
-                <Tab heading={genre.title} key={genre.key} >
-                  <NewsFeed genre={genre.title}/>
+                <Tab key={genre.key} heading={genre.title}>
+                  <NewsTab genre={genre.title}/>
                 </Tab>
               )
             )
