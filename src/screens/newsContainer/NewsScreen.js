@@ -61,4 +61,12 @@ export default StackNavigator({
       title: "Article"
     })
   }
+}, {
+  navigationOptions: {
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomColor: "transparent"
+    }
+  }
 });
