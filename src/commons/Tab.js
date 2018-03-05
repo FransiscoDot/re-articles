@@ -40,7 +40,7 @@ export default TabNavigator(
         fontSize: 12
       },
       style: {
-        backgroundColor: '#161614',
+        backgroundColor: '#161614'
       },
     }
   }

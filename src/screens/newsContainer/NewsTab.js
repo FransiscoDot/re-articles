@@ -19,14 +19,15 @@ class NewsTab extends Component {
 
   render() {
     return (
-      <NewsFeed genre={this.props.genre} screenProps={this.props.genre}/>
+      <NewsFeed genre={this.props.genre} navigation={this.props.navigation}/>
     );
   }
 }
 
 NewsTab.propTypes = {
   genre: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 export default connect()(NewsTab);

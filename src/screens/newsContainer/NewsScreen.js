@@ -1,10 +1,13 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import { Container, Tabs, Tab, ScrollableTab } from "native-base";
+import { StackNavigator } from "react-navigation";
 
 import NewsTab from "./NewsTab";
+import ArticleDetail from "./ArticleDetail";
 
 const genres = [
-  { title: "culture", key: 0},
+  { title: "diplomacy", key: 0},
   { title: "music", key: 1},
   { title: "art", key: 2},
   { title: "design", key: 3},
@@ -14,22 +17,48 @@ const genres = [
 ];
 
 class NewsScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.renderTabs = this.renderTabs.bind(this);
+  }
+
+  renderTabs = (genre) => {
+    return (
+      <Tab key={genre.key} heading={genre.title}>
+        <NewsTab genre={genre.title} navigation={this.props.navigation} />
+      </Tab>
+    );
+  };
+
   render() {
     return (
       <Container>
-        <Tabs renderTabBar={()=> <ScrollableTab />}>
-          { genres.map(genre =>
-              (
-                <Tab key={genre.key} heading={genre.title}>
-                  <NewsTab genre={genre.title}/>
-                </Tab>
-              )
-            )
-          }
+        <Tabs
+          renderTabBar={()=> <ScrollableTab />}
+          tabBarUnderlineStyle={{backgroundColor: "#ff3287"}}>
+            { genres.map(genre => this.renderTabs(genre)) }
         </Tabs>
       </Container>
     );
   }
 }
 
-export default NewsScreen;
+NewsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+};
+
+export default StackNavigator({
+  NewsScreen: {
+    screen: NewsScreen,
+    navigationOptions: ({
+      title: "News feed"
+    })
+  },
+  ArticleDetail: {
+    screen: ArticleDetail,
+    navigationOptions: ({
+      title: "Article"
+    })
+  }
+});

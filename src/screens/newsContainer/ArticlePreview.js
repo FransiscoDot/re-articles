@@ -1,19 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { StyleSheet, ImageBackground, Text, View, TouchableHighlight   } from 'react-native';
 
-const ArticlePreview = (article) => {
+const ArticlePreview = ({article, navigation}) => {
   return (
-    <TouchableHighlight>
-      <ImageBackground source={{uri: article.urlToImage}} style={styles.container} om>
-        <View style={styles.textContainer}>
-          { article.source.name != null &&
-            <Text style={styles.source}>{article.source.name}</Text>
-          }
-          <Text style={styles.description}>{article.description}</Text>
-        </View>
+    <TouchableHighlight onPress={() => navigation.navigate("ArticleDetail", {url: article.url} )}>
+      <ImageBackground
+        source={{uri: article.urlToImage}}
+        style={styles.container} >
+          <View style={styles.textContainer}>
+            {
+              article.source.name != null && <Text style={styles.source}>{article.source.name}</Text>
+            }
+            <Text style={styles.description}>{article.description}</Text>
+          </View>
       </ImageBackground>
     </TouchableHighlight>
   );
+};
+
+ArticlePreview.propTypes = {
+  article: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

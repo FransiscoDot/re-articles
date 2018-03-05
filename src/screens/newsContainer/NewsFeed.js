@@ -4,15 +4,23 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyleSheet } from "react-native";
 import { Container, List } from "native-base";
+
 import * as newsActions from "../../actions/newsAction";
 import { articlesFilteredAndFormatted } from "../../selectors/selectors";
-
 import ArticlePreview from "./ArticlePreview";
 
 class NewsFeed extends Component {
   constructor(props) {
     super(props);
+
+    this.renderArticlesPreview = this.renderArticlesPreview.bind(this);
   }
+
+  renderArticlesPreview = item => {
+    return (
+      <ArticlePreview article={item} navigation={this.props.navigation} />
+    );
+  };
 
   render() {
     return (
@@ -20,7 +28,7 @@ class NewsFeed extends Component {
          <List dataArray={this.props.articles}
             renderRow={(item) =>
               (
-               item.urlToImage != undefined && <ArticlePreview {...item}/>
+               item.urlToImage != undefined && this.renderArticlesPreview(item)
               )
             }
           />
@@ -37,15 +45,16 @@ const styles = StyleSheet.create({
 
 NewsFeed.propTypes = {
   articles: PropTypes.array.isRequired,
-  genre: PropTypes.string.isRequired
+  genre: PropTypes.string.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-  const articles = articlesFilteredAndFormatted(state.news, ownProps.screenProps);
+  const articles = articlesFilteredAndFormatted(state.news, ownProps.genre);
 
   return {
     articles: articles,
-    genre: ownProps.screenProps
+    genre: ownProps.genre
   };
 }
 
