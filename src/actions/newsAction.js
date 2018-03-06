@@ -18,7 +18,13 @@ export function loadEverythingNews(news) {
 export function getBreakingNews(country, category) {
   return function(dispatch) {
     return NewsApi.getBreakingNews(country, category).then(response => {
-      dispatch(loadBreakingNews(response.data.articles));
+
+      const news = {
+        articles: response.data.articles,
+        genre: category
+      };
+
+      dispatch(loadBreakingNews(news));
     }).catch(error => {
       throw error;
     });

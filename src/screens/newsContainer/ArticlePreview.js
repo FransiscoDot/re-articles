@@ -3,6 +3,14 @@ import PropTypes from "prop-types";
 import { StyleSheet, ImageBackground, Text, View, TouchableHighlight   } from 'react-native';
 
 const ArticlePreview = ({article, navigation}) => {
+
+  function getTitleOrDescription(title, description) {
+    if (title != null)
+      return title;
+
+    return description;
+  }
+
   return (
     <TouchableHighlight onPress={() => navigation.navigate("ArticleDetail", {url: article.url} )}>
       <ImageBackground
@@ -12,7 +20,7 @@ const ArticlePreview = ({article, navigation}) => {
             {
               article.source.name != null && <Text style={styles.source}>{article.source.name}</Text>
             }
-            <Text style={styles.description}>{article.description}</Text>
+            <Text style={styles.textPreview}> {getTitleOrDescription(article.title, article.description)} </Text>
           </View>
       </ImageBackground>
     </TouchableHighlight>
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 12
   },
-  description: {
+  textPreview: {
     marginTop: 1,
     marginLeft: 10,
     marginRight: 10,

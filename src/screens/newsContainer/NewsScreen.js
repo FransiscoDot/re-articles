@@ -7,13 +7,15 @@ import NewsTab from "./NewsTab";
 import ArticleDetail from "./ArticleDetail";
 
 const genres = [
-  { title: "diplomacy", key: 0},
-  { title: "music", key: 1},
-  { title: "art", key: 2},
-  { title: "design", key: 3},
-  { title: "tech", key: 4},
-  { title: "programming", key: 5},
-  { title: "gaming", key: 6}
+  "general",
+  "science",
+  "technology",
+  "business",
+  "entertainment",
+  "gaming",
+  "software development",
+  "sports",
+  "history"
 ];
 
 class NewsScreen extends Component {
@@ -23,10 +25,10 @@ class NewsScreen extends Component {
     this.renderTabs = this.renderTabs.bind(this);
   }
 
-  renderTabs = (genre) => {
+  renderTabs = (genre, index) => {
     return (
-      <Tab key={genre.key} heading={genre.title}>
-        <NewsTab genre={genre.title} navigation={this.props.navigation} />
+      <Tab key={index} heading={genre}>
+        <NewsTab genre={genre} navigation={this.props.navigation} />
       </Tab>
     );
   };
@@ -37,7 +39,7 @@ class NewsScreen extends Component {
         <Tabs
           renderTabBar={()=> <ScrollableTab />}
           tabBarUnderlineStyle={{backgroundColor: "#ff3287"}}>
-            { genres.map(genre => this.renderTabs(genre)) }
+            { genres.map((genre, index) => this.renderTabs(genre, index)) }
         </Tabs>
       </Container>
     );
