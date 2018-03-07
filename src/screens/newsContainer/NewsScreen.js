@@ -58,9 +58,6 @@ export default StackNavigator({
     })
   },
   ArticleDetail: {
-    screen: ArticleDetail,
-    navigationOptions: ({
-      title: "Article"
-    })
+    screen: ArticleDetail
   }
 });

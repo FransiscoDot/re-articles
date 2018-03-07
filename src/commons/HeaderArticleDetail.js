@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 const Header = ({onPress}) => {
   return (
     <View>
-      <Ionicons name="ios-menu" size={25} style={styles.iconMenu} onPress={onPress}/>
+      <Ionicons name="ios-book" size={25} style={styles.iconMenu} onPress={onPress}/>
     </View>
   );
 };

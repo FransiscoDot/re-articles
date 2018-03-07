@@ -4,7 +4,6 @@ import { StackNavigator } from "react-navigation";
 import configureStore from "./src/store/configureStore";
 
 import Tab from "./src/commons/Tab";
-import Header from "./src/commons/Header";
 
 const store = configureStore();
 
