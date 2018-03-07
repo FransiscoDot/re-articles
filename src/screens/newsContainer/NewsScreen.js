@@ -60,4 +60,12 @@ export default StackNavigator({
   ArticleDetail: {
     screen: ArticleDetail
   }
+}, {
+  navigationOptions: {
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomColor: "transparent"
+    }
+  }
 });
