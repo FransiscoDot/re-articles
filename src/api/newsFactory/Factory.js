@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default class Factory {
   constructor(option) {
     if (option.type == null || option.type == "")
@@ -39,7 +41,7 @@ class Article {
   }
 }
 
-class ArticlesFromNewsApi extends Articles {
+class ArticlesFromNewsApi {
   static get apiKey() {
     return "f69f2c78ba3248b89aa4128b5c3348c9";
   }
@@ -52,11 +54,61 @@ class ArticlesFromNewsApi extends Articles {
     return "https://newsapi.org/v2/top-headlines?";
   }
 
+  static get interestSupportCategorySearch() {
+    return [
+      "business",
+      "entertainment",
+      "general",
+      "health",
+      "science",
+      "technology",
+      "sports"
+    ];
+  }
+
   constructor(option) {
     super([], option.genre);
 
-    this.genre = option.genre;
+    this.option = option;
   }
 
-  fetchArticles
+  fetchArticles() {
+    const interestSupportCategorySearch = this
+      .interestSupportCategorySearch()
+      .includes(this.option.interest);
+
+    const endpoint = (interestSupportCategorySearch)
+      ? this._getHeadlinesEndpoint()
+      : this._getEverythingEndpoint()
+
+    return axios.get(endpoint, {}).then(response => {
+
+    });
+  }
+
+  _getEverythingEndpoint() {
+      let endpoint = this.everythingEnpoint();
+
+      endpoint += `q=${this.option.interest}`;
+
+      endpoint += `&language=${this.option.language}`;
+
+      if (this.option.newestArticles)
+        endpoint += "&sortBy=publishedAt";
+
+      endpoint += `&apiKey=${this.apiKey()}`;
+
+      return endpoint;
+  }
+
+  _getHeadlinesEndpoint() {
+    let endpoint = this.headlinesEndpoint();
+
+    endpoint += `country=${this.option.country}`;
+
+    if (category != undefined)
+      endpoint += `&category=${this.option.category}`;
+
+    endpoint += `&apiKey=${API_KEY}`
+  }
 }
