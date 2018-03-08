@@ -1,22 +1,13 @@
 import React, { Component } from "react";
+import Proptypes from "prop-types";
+import { connect } from "react-redux";
 import { StyleSheet, View, ScrollView, Text, ImageBackground } from "react-native";
 import { Fab, Icon } from "native-base";
+
+import * as CategoriesApi from "../../actions/categoriesActions";
 import CategoryBox from "./CategoryBox";
 
 const categories = [
-  "diplomacy",
-  "music",
-  "art",
-  "design",
-  "tech",
-  "programming",
-  "gaming",
-  "trump",
-  "language",
-  "gym",
-  "cinema",
-  "automotive",
-  "economy",
   "diplomacy",
   "music",
   "art",
@@ -33,6 +24,47 @@ const categories = [
 ];
 
 class Interests extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      categoriesSelected: []
+    };
+
+    this.onSave = this.onSave.bind(this);
+    this.renderCategoriesBox = this.renderCategoriesBox.bind(this);
+    this.onClickCategory = this.onClickCategory.bind(this);
+  }
+
+  onSave() {
+    this.props.dispatch(CategoriesApi.saveCategories(categories)).then(() => {
+
+    });
+  }
+
+  onClickCategory(category) {
+    const isSelected = this.state.categoriesSelected.includes(category);
+
+    this.setState(prevState => {
+      return {
+        categoriesSelected: (!isSelected)
+          ? prevState.categoriesSelected.concat(category)
+          : prevState.categoriesSelected.filter(c => {
+            if (c !== category)
+              return c;
+            })
+      };
+    });
+  }
+
+  renderCategoriesBox(category, index) {
+    const isSelected = this.state.categoriesSelected.includes(category);
+
+    return (
+      <CategoryBox key={index} category={category} selected={isSelected} onClick={this.onClickCategory}/>
+    );
+  }
+
   render() {
     return (
       <ImageBackground style={styles.container} source={{uri: "http://assets.signature-reads.com/wp-content/uploads/2017/09/books.jpg"}}>
@@ -42,15 +74,16 @@ class Interests extends Component {
           </View>
           <View style={styles.body}>
             <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerScrollView}>
-              {categories.map((category, index) => <CategoryBox key={index} category={category} />)}
+              {categories.map((category, index) => this.renderCategoriesBox(category, index))}
             </ScrollView>
           </View>
           <View style={styles.footer}>
             <Fab
               direction="up"
               style={{ backgroundColor: '#50bbff' }}
-              position="bottomRight">
-              <Icon name="ios-arrow-round-forward-outline"/>
+              position="bottomRight"
+              onPress={this.onSave}>
+                <Icon name="ios-arrow-round-forward-outline"/>
             </Fab>
           </View>
         </View>
@@ -58,6 +91,10 @@ class Interests extends Component {
     );
   }
 }
+
+Interests.propTypes = {
+  dispatch: Proptypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -98,4 +135,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Interests;
+export default connect()(Interests);

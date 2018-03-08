@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { WebView, Button } from "react-native";
+import { WebView } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import read from "node-readability";
 
 class ArticleDetail extends Component {
-  constructor(props) {
-    super(props);
-
-    this.setState = {
-      isReaderModeEnabled: false
-    };
-
-    this.enableReaderMode = this.enableReaderMode.bind(this);
-  }
-
   static navigationOptions = ({ navigation }) => {
      return {
          headerRight: <Ionicons
@@ -25,16 +14,22 @@ class ArticleDetail extends Component {
      };
   }
 
-  enableReaderMode() {
-    debugger;
-    read(this.props.navigation.state.params.url, (error, article, meta) => {
-      debugger;
-    });
+  constructor(props) {
+    super(props);
+
+    this.setState = {
+      isReaderModeEnabled: false
+    };
+
+    this.enableReaderMode = this.enableReaderMode.bind(this);
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ enableReaderMode: this.enableReaderMode })
+    this.props.navigation.setParams({ enableReaderMode: this.enableReaderMode });
   }
+
+  enableReaderMode() {}
+
 
   render() {
     return (
@@ -43,7 +38,7 @@ class ArticleDetail extends Component {
       />
     );
   }
-};
+}
 
 ArticleDetail.propTypes = {
   navigation: PropTypes.object.isRequired
