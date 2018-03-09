@@ -4,7 +4,7 @@ import News from "./News";
 const _getEverythingEndpoint = Symbol("get the url based on everything endpoint");
 const _getHeadlinesEndpoint = Symbol("get the url based on headlines endpoint");
 
-export default class NewsFromNewsApi extends News {
+export default class NewsFromNewsApi {
   static get apiKey() {
     return "f69f2c78ba3248b89aa4128b5c3348c9";
   }
@@ -30,12 +30,10 @@ export default class NewsFromNewsApi extends News {
   }
 
   constructor(option) {
-    super([], option.genre);
-
     this.option = option;
   }
 
-  fetchArticles() {
+  getArticles() {
     const isSupportedFromCategorySearch = this
       .keywordSupportCategorySearch()
       .includes(this.option.interest);
