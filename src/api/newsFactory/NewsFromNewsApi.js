@@ -1,6 +1,8 @@
 import axios from "axios";
-
 import News from "./News";
+
+const _getEverythingEndpoint = Symbol("_getEverythingEndpoint");
+const _getHeadlinesEndpoint = Symbol("_getHeadlinesEndpoint");
 
 export default class NewsFromNewsApi extends News {
   static get apiKey() {
@@ -39,15 +41,15 @@ export default class NewsFromNewsApi extends News {
       .includes(this.option.interest);
 
     const endpoint = (isSupportedFromCategorySearch)
-      ? this._getHeadlinesEndpoint()
-      : this._getEverythingEndpoint();
+      ? this[_getHeadlinesEndpoint]()
+      : this[_getEverythingEndpoint]();
 
     return axios.get(endpoint, {}).then(() => {
 
     });
   }
 
-  _getEverythingEndpoint() {
+  [_getEverythingEndpoint]() {
       let endpoint = this.everythingEnpoint();
 
       endpoint += `q=${this.option.interest}`;
@@ -62,7 +64,7 @@ export default class NewsFromNewsApi extends News {
       return endpoint;
   }
 
-  _getHeadlinesEndpoint() {
+  [_getHeadlinesEndpoint]() {
     let endpoint = this.headlinesEndpoint();
 
     endpoint += `country=${this.option.country}`;
