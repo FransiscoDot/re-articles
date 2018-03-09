@@ -1,8 +1,8 @@
 import axios from "axios";
 import News from "./News";
 
-const _getEverythingEndpoint = Symbol("_getEverythingEndpoint");
-const _getHeadlinesEndpoint = Symbol("_getHeadlinesEndpoint");
+const _getEverythingEndpoint = Symbol("get the url based on everything endpoint");
+const _getHeadlinesEndpoint = Symbol("get the url based on headlines endpoint");
 
 export default class NewsFromNewsApi extends News {
   static get apiKey() {
