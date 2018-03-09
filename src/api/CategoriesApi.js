@@ -1,15 +1,15 @@
 const delay = 1000;
 
-let categories = [];
+let Categories = [];
 
 export default class CategoriesApi {
-  static getCategories() {
+  static getInterests() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (categories.length == 0)
+        if (Categories.length == 0)
           reject("Categories cannot be empty when getCategories is executing");
 
-        resolve(Object.assign([], categories));
+        resolve(Object.assign([], Categories));
       }, delay);
     });
   }
@@ -20,7 +20,9 @@ export default class CategoriesApi {
         if (categories.length == 0)
           reject("Categories cannot be empty when saveCategories is executing");
 
-        categories = Object.assign([], categories);
+        Categories = Object.assign([], categories);
+
+        resolve();
       }, delay);
     });
   }

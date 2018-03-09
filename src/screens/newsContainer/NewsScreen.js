@@ -1,22 +1,11 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Container, Tabs, Tab, ScrollableTab } from "native-base";
 import { StackNavigator } from "react-navigation";
 
 import NewsTab from "./NewsTab";
 import ArticleDetail from "./ArticleDetail";
-
-const genres = [
-  "general",
-  "science",
-  "technology",
-  "business",
-  "entertainment",
-  "gaming",
-  "software development",
-  "sports",
-  "history"
-];
 
 class NewsScreen extends Component {
   constructor(props) {
@@ -39,7 +28,7 @@ class NewsScreen extends Component {
         <Tabs
           renderTabBar={()=> <ScrollableTab />}
           tabBarUnderlineStyle={{backgroundColor: "#ff3287"}}>
-            { genres.map((genre, index) => this.renderTabs(genre, index)) }
+            { this.props.categories.map((genre, index) => this.renderTabs(genre, index)) }
         </Tabs>
       </Container>
     );
@@ -47,12 +36,21 @@ class NewsScreen extends Component {
 }
 
 NewsScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    categories: state.categories
+  };
+}
+
+const newsScreenConnected = connect(mapStateToProps)(NewsScreen);
 
 export default StackNavigator({
   NewsScreen: {
-    screen: NewsScreen,
+    screen: newsScreenConnected,
     navigationOptions: ({
       title: "News feed"
     })

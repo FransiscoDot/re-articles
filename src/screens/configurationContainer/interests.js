@@ -12,15 +12,22 @@ const categories = [
   "music",
   "art",
   "design",
-  "tech",
   "programming",
   "gaming",
   "trump",
+  "literature",
   "language",
   "gym",
   "cinema",
   "automotive",
-  "economy"
+  "economy",
+  "general",
+  "science",
+  "technology",
+  "business",
+  "entertainment",
+  "software development",
+  "sports",
 ];
 
 class Interests extends Component {
@@ -37,8 +44,8 @@ class Interests extends Component {
   }
 
   onSave() {
-    this.props.dispatch(CategoriesApi.saveCategories(categories)).then(() => {
-
+    this.props.dispatch(CategoriesApi.createCategoriesConfiguration(this.state.categoriesSelected)).then(() => {
+      this.props.afterSave();
     });
   }
 
@@ -93,7 +100,8 @@ class Interests extends Component {
 }
 
 Interests.propTypes = {
-  dispatch: Proptypes.func.isRequired
+  dispatch: Proptypes.func.isRequired,
+  afterSave: Proptypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
