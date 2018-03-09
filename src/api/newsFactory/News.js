@@ -1,5 +1,10 @@
+import Article from "./Article";
+
 export default class News {
   constructor(articles, about) {
+    if (!articles.some(article => article instanceof Article))
+      throw("The property articles of News class must contain only Article instance");
+
     if (about == null)
       throw("Cannot create News without about");
 
