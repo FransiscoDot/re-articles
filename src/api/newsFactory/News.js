@@ -2,7 +2,7 @@ import Article from "./Article";
 
 export default class News {
   constructor(articles, about) {
-    if (!articles.some(article => article instanceof Article))
+    if (!articles.every(article => article instanceof Article))
       throw("The property articles of News class must contain only Article instance");
 
     if (about == null)
