@@ -1,23 +1,20 @@
 import NewsFromNewsApi from "./NewsFromNewsApi";
-import NewsOption from "./NewsOption";
+import FactoryOption from "./NewsOption";
 
 export default class Factory {
   constructor(option) {
-    if (!option instanceof NewsOption)
+    if (!(option instanceof FactoryOption))
       throw("Factory accept only instance of NewsOption");
-
-    if (option.type == null || option.type == "")
-      throw("The property type of option cannot be null or empty, neet to must be a valid type proeprty for option factory");
 
     this.option = option;
   }
 
-  CreateArticles() {
+  GetArticles() {
     const { option } = this;
 
     switch(option.apiType) {
-      case "NewsFromNewsApi":
-        return new NewsFromNewsApi(this.option);
+      case "newsapi":
+        return new NewsFromNewsApi(this.option).getArticles();
     }
   }
 }

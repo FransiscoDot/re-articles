@@ -1,12 +1,18 @@
-export default class Article {
-  constructor(title, description = null, source = null, url, urlToImage) {
-    if (title == null || url == null || urlToImage)
-      throw("Cannot create article without title, url or urlToImage");
+import News from "./News";
 
-    this.title = title;
-    this.description = description;
-    this.source = source;
-    this.url = url;
-    this.urlToImage;
+export default class Article {
+  constructor(news, about) {
+    if (!news.every(news => news instanceof News))
+      throw("The property articles of News class must contain only Article instance");
+
+    if (about == null)
+      throw("Cannot create News without about");
+
+    this.about = about;
+    this.news = news.filter(news => {
+      if (news.urlToImage != null && news.urlToImage != "" && news.urlToImage != " ")
+        if (news.title != null || news.description != null)
+          return news;
+    });
   }
 }

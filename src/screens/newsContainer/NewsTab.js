@@ -24,15 +24,17 @@ class NewsTab extends Component {
     if (this.props.genre == undefined)
       throw "Genre cannot be undefined";
 
-    const categoryEnabled = categoryEnabledFromApi.filter(category => {
-      if (category === this.props.genre)
-        return category;
-    })[0];
+    this.props.dispatch(newsApi.getArticles("newsapi", this.props.genre, "it"));
 
-    if (categoryEnabled != null)
-      this.props.dispatch(newsApi.getBreakingNews("it", categoryEnabled));
-    else
-      this.props.dispatch(newsApi.getEverythingNews(this.props.genre, "it"));
+    // const categoryEnabled = categoryEnabledFromApi.filter(category => {
+    //   if (category === this.props.genre)
+    //     return category;
+    // })[0];
+
+    // if (categoryEnabled != null)
+    //   this.props.dispatch(newsApi.getBreakingNews("it", categoryEnabled));
+    // else
+    //   this.props.dispatch(newsApi.getEverythingNews(this.props.genre, "it"));
   }
 
   render() {

@@ -3,11 +3,22 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Tabs, Tab, ScrollableTab } from "native-base";
 import { StackNavigator } from "react-navigation";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import NewsTab from "./NewsTab";
 import ArticleDetail from "./ArticleDetail";
 
 class NewsScreen extends Component {
+  static navigationOptions = () => {
+    return {
+      title: "News feed",
+      headerRight: <Ionicons
+        name="ios-add-circle-outline"
+        size={25}
+        style={{paddingRight: 10}}/>
+    };
+ }
+
   constructor(props) {
     super(props);
 
@@ -50,10 +61,7 @@ const newsScreenConnected = connect(mapStateToProps)(NewsScreen);
 
 export default StackNavigator({
   NewsScreen: {
-    screen: newsScreenConnected,
-    navigationOptions: ({
-      title: "News feed"
-    })
+    screen: newsScreenConnected
   },
   ArticleDetail: {
     screen: ArticleDetail

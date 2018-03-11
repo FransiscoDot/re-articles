@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 class ArticleDetail extends Component {
   static navigationOptions = ({ navigation }) => {
      return {
-         headerRight: <Ionicons
+        headerRight: <Ionicons
           name="ios-book-outline"
           size={25}
           onPress={() => navigation.state.params.enableReaderMode()}

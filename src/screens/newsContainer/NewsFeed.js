@@ -50,7 +50,10 @@ NewsFeed.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const articles = articlesFilteredAndFormatted(state.news, ownProps.genre);
+  let articles = state.news.filter(news => {
+    if (news.interest == ownProps.genre)
+      return news;
+  })[0];
 
   return {
     articles: articles,

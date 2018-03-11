@@ -1,5 +1,7 @@
 import * as types from "./actionTypes";
 import NewsApi from "../api/NewsApi";
+import Factory from "../api/newsFactory/Factory";
+import FactoryOption from "../api/newsFactory/NewsOption";
 
 export function loadBreakingNews(news) {
   return {
@@ -13,6 +15,26 @@ export function loadEverythingNews(news) {
     type: types.LOAD_EVERYTHING_NEWS,
     news
   };
+}
+
+export function getArticles(apiType, interest, country, language = null, sortBy = null) {
+  return function(dispatch) {
+
+    const option = new FactoryOption(
+      apiType,
+      interest,
+      country,
+      language,
+      sortBy
+    );
+
+    return new Factory(option).GetArticles().then(articles => {
+      debugger;
+      dispatch(loadEverythingNews(articles));
+    }).catch(error => {
+      throw error;
+    });
+  }
 }
 
 export function getBreakingNews(country, category) {
