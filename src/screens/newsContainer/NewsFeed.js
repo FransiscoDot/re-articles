@@ -6,7 +6,6 @@ import { StyleSheet } from "react-native";
 import { Container, List } from "native-base";
 
 import * as newsActions from "../../actions/newsAction";
-import { articlesFilteredAndFormatted } from "../../selectors/selectors";
 import ArticlePreview from "./ArticlePreview";
 
 class NewsFeed extends Component {

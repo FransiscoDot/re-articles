@@ -44,9 +44,10 @@ class Interests extends Component {
   }
 
   onSave() {
-    this.props.dispatch(CategoriesApi.createCategoriesConfiguration(this.state.categoriesSelected)).then(() => {
-      this.props.afterSave();
-    });
+    this.props.dispatch(CategoriesApi.createCategoriesConfiguration(this.state.categoriesSelected))
+      .then(() => {
+        this.props.afterSave();
+      });
   }
 
   onClickCategory(category) {
