@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
 import news from "./newsReducer";
-import categories from "./categoriesReducer";
+import interests from "./interestsReducer";
 
 export const rootReducer = combineReducers({
-  categories,
+  interests,
   news
 });
 

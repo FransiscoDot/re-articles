@@ -33,7 +33,7 @@ export default TabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: '#ff3287',
+      activeTintColor: '#50bbff',
       inactiveTintColor: 'white',
       tabBarPosition: "bottom",
       labelStyle: {

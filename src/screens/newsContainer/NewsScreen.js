@@ -25,10 +25,10 @@ class NewsScreen extends Component {
     this.renderTabs = this.renderTabs.bind(this);
   }
 
-  renderTabs = (genre, index) => {
+  renderTabs = (interest, index) => {
     return (
-      <Tab key={index} heading={genre}>
-        <NewsTab genre={genre} navigation={this.props.navigation} />
+      <Tab key={index} heading={interest}>
+        <NewsTab interest={interest} navigation={this.props.navigation} />
       </Tab>
     );
   };
@@ -38,8 +38,9 @@ class NewsScreen extends Component {
       <Container>
         <Tabs
           renderTabBar={()=> <ScrollableTab />}
-          tabBarUnderlineStyle={{backgroundColor: "#ff3287"}}>
-            { this.props.categories.map((genre, index) => this.renderTabs(genre, index)) }
+          tabBarUnderlineStyle={{backgroundColor: "#50bbff", height: 2}}
+        >
+            { this.props.interests.map((interest, index) => this.renderTabs(interest, index)) }
         </Tabs>
       </Container>
     );
@@ -48,12 +49,12 @@ class NewsScreen extends Component {
 
 NewsScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  categories: PropTypes.array.isRequired
+  interests: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories
+    interests: state.interests
   };
 }
 

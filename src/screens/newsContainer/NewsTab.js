@@ -1,19 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import * as newsApi from "../../actions/newsAction";
+import * as articlesAction from "../../actions/ArticlesAction";
 import { connect } from 'react-redux';
 
 import NewsFeed from "./NewsFeed";
-
-const categoryEnabledFromApi = [
-  "business",
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "technology",
-  "sports"
-];
 
 class NewsTab extends Component {
   constructor(props) {
@@ -21,31 +11,21 @@ class NewsTab extends Component {
   }
 
   componentDidMount() {
-    if (this.props.genre == undefined)
-      throw "Genre cannot be undefined";
+    if (this.props.interest == undefined)
+      throw "Interest cannot be undefined";
 
-    this.props.dispatch(newsApi.getArticles("newsapi", this.props.genre, "it"));
-
-    // const categoryEnabled = categoryEnabledFromApi.filter(category => {
-    //   if (category === this.props.genre)
-    //     return category;
-    // })[0];
-
-    // if (categoryEnabled != null)
-    //   this.props.dispatch(newsApi.getBreakingNews("it", categoryEnabled));
-    // else
-    //   this.props.dispatch(newsApi.getEverythingNews(this.props.genre, "it"));
+    this.props.dispatch(articlesAction.getArticles("newsapi", this.props.interest, "it", "it"));
   }
 
   render() {
     return (
-      <NewsFeed genre={this.props.genre} navigation={this.props.navigation}/>
+      <NewsFeed interest={this.props.interest} navigation={this.props.navigation}/>
     );
   }
 }
 
 NewsTab.propTypes = {
-  genre: PropTypes.string.isRequired,
+  interest: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired
 };

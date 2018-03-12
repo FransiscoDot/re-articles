@@ -17,14 +17,14 @@ export function loadEverythingNews(news) {
   };
 }
 
-export function getArticles(apiType, interest, country, language = null, sortBy = null) {
+export function getArticles(apiType, interest, language, country, sortBy = null) {
   return function(dispatch) {
 
     const option = new FactoryOption(
       apiType,
       interest,
-      country,
       language,
+      country,
       sortBy
     );
 
@@ -33,7 +33,7 @@ export function getArticles(apiType, interest, country, language = null, sortBy 
     }).catch(error => {
       throw error;
     });
-  }
+  };
 }
 
 export function getBreakingNews(country, category) {

@@ -7,7 +7,7 @@ export default class FactoryOption {
     ];
   }
 
-  constructor(apiType, interest, language, country = null, sortBy = null) {
+  constructor(apiType, interest, language, country, sortBy = null) {
 
     if (apiType == null || apiType == "")
       throw("The property apiType of option cannot be null or empty");
@@ -18,13 +18,16 @@ export default class FactoryOption {
     if (language == null || language == "")
       throw("The property language of option cannot be null or empty");
 
+    if (country == null || country == "")
+      throw("The property language of option cannot be null or empty");
+
     if (!this[_getApiTypeAllowed]().includes(apiType.toLowerCase()))
       throw("This kinda of api is not allowed");
 
     this.apiType = apiType.toLowerCase();
     this.interest = interest;
-    this.country = country;
     this.language = language;
+    this.country = country;
     this.sortBy = sortBy;
   }
 }

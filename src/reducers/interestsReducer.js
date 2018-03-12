@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function categories(state = initialState.interests, action) {
+export default function interests(state = initialState.interests, action) {
   switch(action.type) {
     case types.SAVE_CATEGORIES:
       return [

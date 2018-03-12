@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { StyleSheet, View, ScrollView, Text, ImageBackground } from "react-native";
 import { Fab, Icon } from "native-base";
 
-import * as CategoriesApi from "../../actions/categoriesActions";
+import * as interestsActions from "../../actions/interestsActions";
 import CategoryBox from "./CategoryBox";
 
 const categories = [
@@ -44,7 +44,7 @@ class Interests extends Component {
   }
 
   onSave() {
-    this.props.dispatch(CategoriesApi.createCategoriesConfiguration(this.state.categoriesSelected))
+    this.props.dispatch(interestsActions.createInterestsConfiguration(this.state.categoriesSelected))
       .then(() => {
         this.props.afterSave();
       });
@@ -88,7 +88,7 @@ class Interests extends Component {
           <View style={styles.footer}>
             <Fab
               direction="up"
-              style={{ backgroundColor: '#50bbff' }}
+              style={{ backgroundColor: "#50bbff" }}
               position="bottomRight"
               onPress={this.onSave}>
                 <Icon name="ios-arrow-round-forward-outline"/>

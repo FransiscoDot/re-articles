@@ -2,18 +2,19 @@ import axios from "axios";
 import Articles from "./Articles";
 import News from "./News";
 
-const _getEverythingEndpoint = Symbol("get the url based on everything endpoint");
-const _getHeadlinesEndpoint = Symbol("get the url based on headlines endpoint");
-const _getApiKey = Symbol("api key for this api");
-const _getEverythingEnpoint = Symbol("get the initial url for the everything endpoint");
-const _getInterestsSupportCategorySearch = Symbol("get array of category supported by the headlines endpoint");
+const _getApiKey = Symbol("api key");
+const _getEverythingEndpoint = Symbol("initial url for the everything endpoint");
+const _getHeadlinesEndpoint = Symbol("initial url for the headlines endpoint");
+const _getInterestsSupportCategorySearch = Symbol("array of category supported by the headlines endpoint");
+const _getEverythingUrl = Symbol("url based on everything endpoint");
+const _getHeadlinesUrl = Symbol("url based on headlines endpoint");
 
 export default class NewsFromNewsApi {
   [_getApiKey]() {
     return "f69f2c78ba3248b89aa4128b5c3348c9";
   }
 
-  [_getEverythingEnpoint]() {
+  [_getEverythingEndpoint]() {
     return "https://newsapi.org/v2/everything?";
   }
 
@@ -42,15 +43,15 @@ export default class NewsFromNewsApi {
       .includes(this.option.interest);
 
     const endpoint = (isSupportedFromCategorySearch)
-      ? this[_getHeadlinesEndpoint]()
-      : this[_getEverythingEndpoint]();
+      ? this[_getHeadlinesUrl]()
+      : this[_getEverythingUrl]();
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       axios.get(endpoint, {}).then(response => {
 
         const newsList = response.data.articles.map(n => {
-          return new News(n.title, n.url, n.urlToImage);
-        })
+          return new News(n.title, n.url, n.urlToImage, n.source.name);
+        });
 
         const articles = new Articles(newsList, this.option.interest);
 
@@ -58,11 +59,11 @@ export default class NewsFromNewsApi {
       }).catch(error => {
         throw error;
       });
-    })
+    });
   }
 
-  [_getEverythingEndpoint]() {
-      let endpoint = this[_getEverythingEnpoint]();
+  [_getEverythingUrl]() {
+      let endpoint = this[_getEverythingEndpoint]();
 
       endpoint += `q=${this.option.interest}`;
 
@@ -76,13 +77,12 @@ export default class NewsFromNewsApi {
       return endpoint;
   }
 
-  [_getHeadlinesEndpoint]() {
+  [_getHeadlinesUrl]() {
     let endpoint = this[_getHeadlinesEndpoint]();
 
     endpoint += `country=${this.option.country}`;
 
-    if (this.option.category != undefined)
-      endpoint += `&category=${this.option.category}`;
+    endpoint += `&category=${this.option.interest}`;
 
     endpoint += `&apiKey=${this[_getApiKey]()}`;
 

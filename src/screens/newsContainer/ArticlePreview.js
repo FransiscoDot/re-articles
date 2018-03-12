@@ -18,7 +18,7 @@ const ArticlePreview = ({article, navigation}) => {
         style={styles.container} >
           <View style={styles.textContainer}>
             {
-              article.source.name != null && <Text style={styles.source}>{article.source.name}</Text>
+              article.source != null && <Text style={styles.source}>{article.source}</Text>
             }
             <Text style={styles.textPreview}> {getTitleOrDescription(article.title, article.description)} </Text>
           </View>

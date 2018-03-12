@@ -14,7 +14,7 @@ export function loadInterests(interests) {
   };
 }
 
-export function createCategoriesConfiguration(categories) {
+export function createInterestsConfiguration(categories) {
   return function(dispatch) {
     return CategoriesApi.saveCategories(categories).then(() => {
       dispatch(saveCategories());

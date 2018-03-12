@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { StackNavigator } from "react-navigation";
 import configureStore from "./src/store/configureStore";
 
-import * as CategoriesAction from "./src/actions/categoriesActions";
+import * as interestsActions from "./src/actions/interestsActions";
 import Tab from "./src/commons/Tab";
 import Interests from "./src/screens/configurationContainer/interests";
 
@@ -25,7 +25,7 @@ class App extends React.Component {
       isConfigured: true
     });
 
-    store.dispatch(CategoriesAction.getInterests());
+    store.dispatch(interestsActions.getInterests());
   }
 
   render() {
