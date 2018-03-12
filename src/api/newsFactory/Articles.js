@@ -1,6 +1,6 @@
 import News from "./News";
 
-export default class Article {
+export default class Articles {
   constructor(news, about) {
     if (!news.every(news => news instanceof News))
       throw("The property articles of News class must contain only Article instance");

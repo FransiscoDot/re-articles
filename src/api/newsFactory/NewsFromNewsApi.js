@@ -1,5 +1,5 @@
 import axios from "axios";
-import Article from "./Article";
+import Articles from "./Articles";
 import News from "./News";
 
 const _getEverythingEndpoint = Symbol("get the url based on everything endpoint");
@@ -48,13 +48,13 @@ export default class NewsFromNewsApi {
     return new Promise((resolve, reject) => {
       axios.get(endpoint, {}).then(response => {
 
-        const news = response.data.articles.map(n => {
+        const newsList = response.data.articles.map(n => {
           return new News(n.title, n.url, n.urlToImage);
         })
 
-        const article = new Article(news, this.option.interest);
+        const articles = new Articles(newsList, this.option.interest);
 
-        resolve(article);
+        resolve(articles);
       }).catch(error => {
         throw error;
       });

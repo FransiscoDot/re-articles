@@ -9,8 +9,6 @@ export default class FactoryOption {
 
   constructor(apiType, interest, language, country = null, sortBy = null) {
 
-    debugger;
-
     if (apiType == null || apiType == "")
       throw("The property apiType of option cannot be null or empty");
 

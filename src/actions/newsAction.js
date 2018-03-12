@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import NewsApi from "../api/NewsApi";
 import Factory from "../api/newsFactory/Factory";
-import FactoryOption from "../api/newsFactory/NewsOption";
+import FactoryOption from "../api/newsFactory/FactoryOption";
 
 export function loadBreakingNews(news) {
   return {
@@ -29,7 +29,6 @@ export function getArticles(apiType, interest, country, language = null, sortBy 
     );
 
     return new Factory(option).GetArticles().then(articles => {
-      debugger;
       dispatch(loadEverythingNews(articles));
     }).catch(error => {
       throw error;
