@@ -5,12 +5,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import NewsScreen from "../screens/newsContainer/NewsScreen";
 import CommunityScreen from "../screens/communityContainer/CommunityScreen";
 import WriteScreen from "../screens/writeContainer/WriteScreen";
+import BookmarkScreen from "../screens/bookmarksContainer/BookmarksScreen";
 
 /* eslint-disable */
 
 export default TabNavigator(
   {
     News: { screen: NewsScreen },
+    Bookmarks: { screen: BookmarkScreen },
     Community: { screen: CommunityScreen },
     Write: { screen: WriteScreen }
   },
@@ -21,8 +23,10 @@ export default TabNavigator(
         let iconName;
         if (routeName === 'Home') {
           iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+        } else if (routeName === "Bookmarks") {
+          iconName = `ios-bookmarks${focused ? '' : '-outline'}`;
         } else if (routeName === 'News') {
-          iconName = `ios-paper${focused ? '' : '-outline'}`;
+          iconName = `ios-home${focused ? '' : '-outline'}`;
         } else if (routeName === "Community") {
           iconName = `ios-people${focused ? '' : '-outline'}`;
         } else if (routeName == "Write") {

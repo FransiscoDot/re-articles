@@ -3,7 +3,7 @@ export default class News {
     this.title = title;
     this.url = url;
     this.urlToImage = urlToImage;
-    this.description = description;
+    this.description = (description != null && description.length > 80) ? description.substring(0, 80) + ".." : description;
     this.source = source;
   }
 }

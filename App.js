@@ -5,7 +5,7 @@ import configureStore from "./src/store/configureStore";
 
 import * as interestsActions from "./src/actions/interestsActions";
 import Tab from "./src/commons/Tab";
-import Interests from "./src/screens/configurationContainer/interests";
+import Interests from "./src/screens/configurationContainer/Interests";
 
 const store = configureStore();
 

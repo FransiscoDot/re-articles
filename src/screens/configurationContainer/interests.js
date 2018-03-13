@@ -5,9 +5,9 @@ import { StyleSheet, View, ScrollView, Text, ImageBackground } from "react-nativ
 import { Fab, Icon } from "native-base";
 
 import * as interestsActions from "../../actions/interestsActions";
-import CategoryBox from "./CategoryBox";
+import InterestBox from "./InterestBox";
 
-const categories = [
+const interests = [
   "diplomacy",
   "music",
   "art",
@@ -35,41 +35,41 @@ class Interests extends Component {
     super(props);
 
     this.state = {
-      categoriesSelected: []
+      interestsSelected: []
     };
 
     this.onSave = this.onSave.bind(this);
-    this.renderCategoriesBox = this.renderCategoriesBox.bind(this);
-    this.onClickCategory = this.onClickCategory.bind(this);
+    this.renderInterestsBox = this.renderInterestsBox.bind(this);
+    this.onClickInterest = this.onClickInterest.bind(this);
   }
 
   onSave() {
-    this.props.dispatch(interestsActions.createInterestsConfiguration(this.state.categoriesSelected))
+    this.props.dispatch(interestsActions.createInterestsConfiguration(this.state.interestsSelected))
       .then(() => {
         this.props.afterSave();
       });
   }
 
-  onClickCategory(category) {
-    const isSelected = this.state.categoriesSelected.includes(category);
+  onClickInterest(interest) {
+    const isSelected = this.state.interestsSelected.includes(interest);
 
     this.setState(prevState => {
       return {
-        categoriesSelected: (!isSelected)
-          ? prevState.categoriesSelected.concat(category)
-          : prevState.categoriesSelected.filter(c => {
-            if (c !== category)
+        interestsSelected: (!isSelected)
+          ? prevState.interestsSelected.concat(interest)
+          : prevState.interestsSelected.filter(c => {
+            if (c !== interest)
               return c;
             })
       };
     });
   }
 
-  renderCategoriesBox(category, index) {
-    const isSelected = this.state.categoriesSelected.includes(category);
+  renderInterestsBox(interest, index) {
+    const isSelected = this.state.interestsSelected.includes(interest);
 
     return (
-      <CategoryBox key={index} category={category} selected={isSelected} onClick={this.onClickCategory}/>
+      <InterestBox key={index} interest={interest} selected={isSelected} onClick={this.onClickInterest}/>
     );
   }
 
@@ -82,7 +82,7 @@ class Interests extends Component {
           </View>
           <View style={styles.body}>
             <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerScrollView}>
-              {categories.map((category, index) => this.renderCategoriesBox(category, index))}
+              {interests.map((category, index) => this.renderInterestsBox(category, index))}
             </ScrollView>
           </View>
           <View style={styles.footer}>

@@ -12,7 +12,7 @@ const ArticlePreview = ({article, navigation}) => {
   }
 
   return (
-    <TouchableHighlight onPress={() => navigation.navigate("ArticleDetail", {url: article.url} )}>
+    <TouchableHighlight onPress={() => navigation.navigate("ArticleDetail", {article: article} )}>
       <ImageBackground
         source={{uri: article.urlToImage}}
         style={styles.container} >

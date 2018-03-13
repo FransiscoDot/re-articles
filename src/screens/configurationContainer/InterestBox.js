@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyleSheet, Text, TouchableHighlight } from "react-native";
 
-const CategoryBox = ({category, selected = false, onClick}) => {
+const InterestBox = ({interest, selected = false, onClick}) => {
   return (
-    <TouchableHighlight style={styles.container} onPress={() => onClick(category)}>
-      <Text style={[styles.text, (selected && styles.selected)]}>{category}</Text>
+    <TouchableHighlight style={styles.container} onPress={() => onClick(interest)}>
+      <Text style={[styles.text, (selected && styles.selected)]}>{interest}</Text>
     </TouchableHighlight>
   );
 };
 
-CategoryBox.propTypes = {
-  category: PropTypes.string.isRequired,
+InterestBox.propTypes = {
+  interest: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 };
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CategoryBox;
+export default InterestBox;
